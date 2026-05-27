@@ -1,6 +1,6 @@
 export const environment = {
-  production: false,
-  bubbleTeasUrl: 'http://127.0.0.1:8000/bubbleteas',
+  production: true,
+  bubbleTeasUrl: 'https://bubbletea-az5g.onrender.com/bubbleteas',
   firebase: {
     apiKey: 'AIzaSyDbU4OLAwpBqj9od5QIyjp584cyrwjXXbI',
     authDomain: 'del-test-fundesplai.firebaseapp.com',

@@ -1,1 +1,26 @@
-<h1>Home</h1>
+<h1>Bubble Teas</h1>
+
+@if (bubbleTeas().length === 0) {
+  <p>No bubble teas available.</p>
+} @else {
+  <ul class="bubble-tea-list">
+    @for (bt of bubbleTeas(); track bt.id) {
+      <li>
+        <a [routerLink]="['/bubble-tea', bt.id]">
+          <span class="icon" aria-hidden="true">🧋</span>
+          <span class="name">{{ bt.name }}</span>
+          <span class="meta">
+            <span class="badge" [class.hot]="bt.temperature === 1">
+              {{ bt.temperature === 1 ? 'Hot' : 'Cold' }}
+            </span>
+            <span class="price">{{ bt.precio | number: '1.2-2' }} €</span>
+            @if (!bt.active) {
+              <span class="inactive">inactive</span>
+            }
+          </span>
+          <span class="chevron" aria-hidden="true">›</span>
+        </a>
+      </li>
+    }
+  </ul>
+}

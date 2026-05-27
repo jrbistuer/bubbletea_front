@@ -1,0 +1,44 @@
+<div class="detail">
+  <a class="back" routerLink="/home">
+    <span class="arrow" aria-hidden="true">←</span>
+    <span>Back to the list</span>
+  </a>
+
+  @if (bubbleTea(); as bt) {
+    <article class="card">
+      <figure class="image">
+        <img
+          [src]="'https://loremflickr.com/800/500/bubble-tea,boba/all?lock=' + bt.id"
+          [alt]="bt.name"
+          loading="lazy"
+        />
+      </figure>
+
+      <div class="body">
+        <header>
+          <h1>{{ bt.name }}</h1>
+          <span class="badge" [class.hot]="bt.temperature === 1">
+            {{ bt.temperature === 1 ? 'Hot' : 'Cold' }}
+          </span>
+        </header>
+
+        <dl>
+          <div>
+            <dt>ID</dt>
+            <dd>{{ bt.id }}</dd>
+          </div>
+          <div>
+            <dt>Price</dt>
+            <dd class="price">{{ bt.precio | number: '1.2-2' }} €</dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd [class.inactive]="!bt.active">{{ bt.active ? 'Active' : 'Inactive' }}</dd>
+          </div>
+        </dl>
+      </div>
+    </article>
+  } @else {
+    <p>Bubble tea not found.</p>
+  }
+</div>

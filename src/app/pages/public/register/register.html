@@ -45,7 +45,17 @@
         }
       </mat-form-field>
 
-      <button mat-flat-button color="primary" type="submit">Register</button>
+      @if (error()) {
+        <p class="auth-error" role="alert">{{ error() }}</p>
+      }
+
+      <button mat-flat-button color="primary" type="submit" [disabled]="loading()">
+        @if (loading()) {
+          <mat-spinner diameter="20" />
+        } @else {
+          Register
+        }
+      </button>
     </form>
   </mat-card-content>
   <mat-card-actions>

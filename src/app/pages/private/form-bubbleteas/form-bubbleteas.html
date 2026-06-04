@@ -1,0 +1,46 @@
+<div class="form-header">
+  <a [routerLink]="['/home']" class="back-link" aria-label="Back to home">‹ Back</a>
+  <h1>{{ isEdit() ? 'Edit Bubble Tea' : 'New Bubble Tea' }}</h1>
+</div>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+  <div class="field">
+    <label for="name">Name</label>
+    <input id="name" type="text" formControlName="name" autocomplete="off" />
+    @if (form.controls.name.invalid && form.controls.name.touched) {
+      <span class="field-error" role="alert">Name is required.</span>
+    }
+  </div>
+
+  <div class="field">
+    <label for="temperature">Temperature</label>
+    <select id="temperature" formControlName="temperature">
+      <option value="cold">Cold</option>
+      <option value="hot">Hot</option>
+    </select>
+  </div>
+
+  <div class="field">
+    <label for="precio">Price (€)</label>
+    <input id="precio" type="number" formControlName="precio" min="0" step="0.01" />
+    @if (form.controls.precio.invalid && form.controls.precio.touched) {
+      <span class="field-error" role="alert">A valid price is required.</span>
+    }
+  </div>
+
+  <div class="field field-checkbox">
+    <input id="active" type="checkbox" formControlName="active" />
+    <label for="active">Active</label>
+  </div>
+
+  @if (error()) {
+    <p class="form-error" role="alert">{{ error() }}</p>
+  }
+
+  <div class="form-actions">
+    <a [routerLink]="['/home']" class="btn-cancel">Cancel</a>
+    <button type="submit" class="btn-submit" [disabled]="saving()">
+      {{ saving() ? 'Saving…' : (isEdit() ? 'Save changes' : 'Add bubble tea') }}
+    </button>
+  </div>
+</form>

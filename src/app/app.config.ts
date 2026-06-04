@@ -18,13 +18,5 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
     provideAnimationsAsync(),
     provideHttpClient(),
-    provideAppInitializer(async () => {
-      const service = inject(BubbleTeaService);
-      try {
-        await firstValueFrom(service.loadAll());
-      } catch (err) {
-        console.error('Failed to preload bubble teas', err);
-      }
-    }),
   ],
 };

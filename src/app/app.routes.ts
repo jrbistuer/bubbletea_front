@@ -48,6 +48,20 @@ export const routes: Routes = [
             (m) => m.BubbleTeaDetail,
           ),
       },
+      {
+        path: 'form-bubbleteas',
+        loadComponent: () =>
+          import('./pages/private/form-bubbleteas/form-bubbleteas').then(
+            (m) => m.FormBubbleteas,
+          ),
+      },
+      {
+        path: 'form-bubbleteas/:id',
+        loadComponent: () =>
+          import('./pages/private/form-bubbleteas/form-bubbleteas').then(
+            (m) => m.FormBubbleteas,
+          ),
+      },
     ],
   },
 

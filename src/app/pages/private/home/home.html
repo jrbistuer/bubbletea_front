@@ -1,4 +1,7 @@
-<h1>Bubble Teas</h1>
+<div class="home-header">
+  <h1>Bubble Teas</h1>
+  <a [routerLink]="['/form-bubbleteas']" class="btn-add" aria-label="Add bubble tea">+ Add</a>
+</div>
 
 @if (bubbleTeas().length === 0) {
   <p>No bubble teas available.</p>
@@ -6,20 +9,23 @@
   <ul class="bubble-tea-list">
     @for (bt of bubbleTeas(); track bt.id) {
       <li>
-        <a [routerLink]="['/bubble-tea', bt.id]">
+        <a [routerLink]="['/bubble-tea', bt.id]" class="row-link">
           <span class="icon" aria-hidden="true">🧋</span>
           <span class="name">{{ bt.name }}</span>
           <span class="meta">
-            <span class="badge" [class.hot]="bt.temperature === 1">
-              {{ bt.temperature === 1 ? 'Hot' : 'Cold' }}
+            <span class="badge" [class.hot]="bt.temperature === 'hot'">
+              {{ bt.temperature === 'hot' ? 'Hot' : 'Cold' }}
             </span>
             <span class="price">{{ bt.precio | number: '1.2-2' }} €</span>
             @if (!bt.active) {
               <span class="inactive">inactive</span>
             }
           </span>
-          <span class="chevron" aria-hidden="true">›</span>
         </a>
+        <div class="row-actions">
+          <button type="button" class="btn-edit" (click)="editBubbleTea(bt.id!)" aria-label="Edit {{ bt.name }}">Edit</button>
+          <button type="button" class="btn-delete" (click)="deleteBubbleTea(bt.id!)" aria-label="Delete {{ bt.name }}">Delete</button>
+        </div>
       </li>
     }
   </ul>

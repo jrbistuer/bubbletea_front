@@ -17,8 +17,8 @@
       <div class="body">
         <header>
           <h1>{{ bt.name }}</h1>
-          <span class="badge" [class.hot]="bt.temperature === 1">
-            {{ bt.temperature === 1 ? 'Hot' : 'Cold' }}
+          <span class="badge" [class.hot]="bt.temperature === 'hot'">
+            {{ bt.temperature === 'hot' ? 'Hot' : 'Cold' }}
           </span>
         </header>
 
